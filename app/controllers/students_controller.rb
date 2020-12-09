@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: :show
+  before_action :set_student, only: %i[show edit update]
 
   def index
     @students = Student.all
@@ -12,11 +12,19 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      # redirect_to @student
       flash[:notice] = 'You have been successfully signed up!'
-      redirect_to students_path
+      redirect_to @student
     else
       render :new
+    end
+  end
+
+  def update
+    if @student.update(student_params)
+      flash[:notice] = 'Student information has been successfully updated!'
+      redirect_to students_path
+    else
+      render :edit
     end
   end
 
