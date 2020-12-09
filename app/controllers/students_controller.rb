@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
     if @student.save
       # redirect_to @student
-      flash[:success] = "You have been successfully signed up!"
+      flash[:notice] = 'You have been successfully signed up!'
       redirect_to students_path
     else
       render :new
