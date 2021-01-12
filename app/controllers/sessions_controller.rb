@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_user, only: [:new, :create]
+
   def create
     student = Student.find_by(email: params[:session][:email].downcase)
     if student&.authenticate(params[:session][:password])

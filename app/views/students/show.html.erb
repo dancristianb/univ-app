@@ -12,11 +12,13 @@
         <p>Email:<%= @student.email %></p>
         <p>Course enrollments</p>
       </div>
-      <div class="card-action">
-        <%= link_to edit_student_path(@student), class: 'btn waves-effect waves-light' do %>
-          <i class="material-icons right">create</i>Edit student profile
-        <% end %>
-      </div>
+      <% if @student == current_user %>
+        <div class="card-action">
+          <%= link_to edit_student_path(@student), class: 'btn waves-effect waves-light' do %>
+            <i class="material-icons right">create</i>Edit student profile
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
